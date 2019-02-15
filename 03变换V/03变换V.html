@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            width: 480px;
+            height: 580px;
+            background: url("img/bj2.jpg");
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .box {
+            width: 250px;
+            height: 250px;
+            /*border: 2px solid white;*/
+            position: absolute;
+            left: 115px;
+            top: 110px;
+        }
+
+        ul {
+            position: relative
+        }
+
+        li {
+            list-style: none;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            background: white;
+            color: dodgerblue;
+            position: absolute;
+        }
+
+        .btn {
+            width: 130px;
+            height: 40px;
+            background: dodgerblue;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            color: white;
+            position: absolute;
+            left: 170px;
+            bottom: 60px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="content">
+    <div class="box">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <div class="btn">生成</div>
+</div>
+<script>
+    var oCon = document.getElementById('content')
+    var aLi = oCon.getElementsByTagName('li')
+    var aDiv = oCon.getElementsByTagName('div')[1]
+    var num = 1
+
+
+    tab1()
+
+
+    function tab1() {
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].style.left = i * 50 + 'px'
+            if (i > 2) {
+                aLi[i].style.top = (i % 2) * 50 + 'px'
+            } else {
+                aLi[i].style.top = i * 50 + 'px'
+            }
+        }
+    };
+
+    function tab2() {
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].style.top = i * 50 + 'px'
+            if (i > 2) {
+                aLi[i].style.left = (4 - i % 2) * 50 + 'px'
+            } else {
+                aLi[i].style.left = (4 - i) * 50 + 'px'
+            }
+        }
+    };
+
+    function tab3() {
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].style.left = i * 50 + 'px'
+            if (i > 2) {
+                aLi[i].style.top = (4 - i % 2) * 50 + 'px'
+            } else {
+                aLi[i].style.top = (4 - i) * 50 + 'px'
+            }
+        }
+    };
+
+    function tab4() {
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].style.top = i * 50 + 'px'
+            if (i > 2) {
+                aLi[i].style.left = (i % 2) * 50 + 'px'
+            } else {
+                aLi[i].style.left = i * 50 + 'px'
+            }
+        }
+    };
+
+    aDiv.onclick = function () {
+        if (num == 1) {
+            num++
+            tab2()
+
+        } else if (num == 2) {
+            num++
+            tab3()
+        } else if (num == 3) {
+            num++
+            tab4()
+        } else if (num == 4) {
+
+            if (num == 4) {
+                num = 0
+                tab1()
+            }
+            num++
+
+        }
+    };
+
+
+</script>
+
+</body>
+</html>

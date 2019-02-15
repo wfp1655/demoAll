@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li {
+            list-style: none
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        #content1 {
+            width: 710px;
+            height: 542px;
+            margin: 50px auto;
+            background: url("img/bj.jpg");
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        #box2 {
+            margin-left: 140px;
+            margin-top: 133px;
+
+            width: 422px;
+            height: 320px;
+            background: red;
+            border: 3px solid white;
+            position: relative;
+        }
+
+        #box2 a {
+            display: inline-block;
+            width: 48px;
+            height: 62px;
+            background: black;
+            opacity: 0.3;
+            color: white;
+            font-size: 60px;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            bottom: 130px;
+        }
+
+        #box2 a:hover {
+            opacity: 0.5;
+
+        }
+
+        .left {
+            left: 0
+        }
+
+        .right {
+            right: 0
+        }
+
+        ul {
+            position: absolute;
+            bottom: 0;
+            left: 115px;
+
+        }
+
+        li {
+            width: 10px;
+            height: 15px;
+            background: white;
+            margin-left: 15px;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var imgarr = ["img/01.jpg", "img/02.jpg", "img/03.jpg", "img/04.jpg", "img/05.jpg"]
+            var oBox = document.getElementById('box2')
+            var aA = oBox.getElementsByTagName('a')
+            var aImg = oBox.getElementsByTagName('img')[0]
+            var num = 0
+            var timer = null
+            var timer2 = null
+
+            var oUl = document.getElementById('list')
+            var aLi = oUl.getElementsByTagName('li')
+            var This = null
+            var That = null
+
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].style.left = 35 * i + 'px'
+            };
+
+
+            aA[1].onclick = function () {
+                num++
+                if (num == 5) {
+                    num = 0
+                }
+                aImg.src = imgarr[num]
+                up(aLi[num])
+                This = num
+                down(This, 0, 5)
+            };
+
+            aA[0].onclick = function () {
+                num--
+                if (num == -1) {
+                    num = 4
+                }
+                aImg.src = imgarr[num]
+                up(aLi[num])
+                That = num
+                down(That, 4, -1)
+            };
+
+
+            function down(obj, a, b) {
+                clearInterval(timer2)
+                timer2 = setInterval(function () {
+                    if (obj == a) {
+                        obj = b
+                    }
+                    var nom = b > a ? -1 : 1
+                    aLi[obj + nom].style.height = aLi[obj + nom].offsetHeight - 1 + 'px'
+                    if (aLi[obj + nom].style.height == '15px') {
+                        clearInterval(timer2)
+                }
+                }, 5)
+
+            };
+
+
+            function up(obj) {
+                clearInterval(timer)
+                timer = setInterval(function () {
+                    if (obj.style.height == '40px') {
+                        clearInterval(timer)
+                    }
+                    obj.style.height = obj.offsetHeight + 1 + 'px'
+                }, 5)
+
+            };
+
+            function getstyle(obj, attr) {
+                return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+            };
+
+
+        };
+
+
+    </script>
+</head>
+
+<body>
+    <div id="content1">
+        <div id="box2">
+            <img src="img/01.jpg">
+            <a class="left" href="javascript:;">
+                <</a> <a class="right" href="javascript:;">>
+            </a>
+            <ul id="list">
+                <li style="height: 40px"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+
+            </ul>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
